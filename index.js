@@ -21,7 +21,7 @@ if (!webhook_token) {
     core.setOutput("status", "failed");
 }
 
-if ((!message) && (!embeds) && (!embeds)) {
+if (!message && !embeds) {
     core.setFailed("Message, Embeds, or Files are required");
     core.setOutput("status", "failed");
 }
