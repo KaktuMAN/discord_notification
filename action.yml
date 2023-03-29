@@ -1,0 +1,27 @@
+name: "Discord Webhook"
+description: "Send a message to a Discord channel using a webhook"
+outputs:
+  status:
+    description: 'The status of the run'
+inputs:
+  message:
+    description: 'The message to send to the Discord channel'
+  embeds:
+    description: 'The embeds to send to the Discord channel'
+  username:
+    description: 'The username to send the message as'
+  avatar_url:
+    description: 'The avatar URL to send the message as'
+  suppress_embeds:
+    description: 'Whether or not the embeds (from the urls) should be suppressed'
+  allowed_mentions:
+    description: 'Notifies users in the message'
+  webhook_id:
+    description: 'The ID of the webhook'
+    required: true
+  webhook_token:
+    description: 'The token of the webhook'
+    required: true
+runs:
+  using: node16
+  main: 'index.js'
