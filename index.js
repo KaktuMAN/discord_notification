@@ -12,31 +12,31 @@ const message = core.getInput('message');
 let embeds = core.getInput('embeds');
 
 if (!webhook_id) {
-    core.setFailed("Webhook ID is required");
     core.setOutput("status", "failed");
+    core.setFailed("Webhook ID is required");
 }
 
 if (!webhook_token) {
-    core.setFailed("Webhook Token is required");
     core.setOutput("status", "failed");
+    core.setFailed("Webhook Token is required");
 }
 
 if (!message && !embeds) {
-    core.setFailed("Message, Embeds, or Files are required");
     core.setOutput("status", "failed");
+    core.setFailed("Message, Embeds, or Files are required");
 }
 
 if (message.length > 2000) {
-    core.setFailed("Message length is too long (Max 2000 characters)");
     core.setOutput("status", "failed");
+    core.setFailed("Message length is too long (Max 2000 characters)");
 }
 
 if (embeds) {
     try {
         embeds = JSON.parse(embeds);
     } catch (e) {
-        core.setFailed("Embed is not valid JSON");
         core.setOutput("status", "failed");
+        core.setFailed("Embed is not valid JSON");
     }
 }
 
@@ -50,9 +50,9 @@ client.send({
     avatarURL: avatar_url ? avatar_url : undefined,
     flags: supress_embeds === true ? 4 : undefined,
 }).then(() => {
-    core.info("Message sent successfully");
     core.setOutput("status", "success");
+    core.info("Message sent successfully");
 }).catch((e) => {
-    core.setFailed(e.message);
     core.setOutput("status", "failed");
+    core.setFailed(e.message);
 });
