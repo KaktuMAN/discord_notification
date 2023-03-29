@@ -1,5 +1,5 @@
 This is a Github Action to send message to discord webhooks.
-
+Made by Nicolas
 ## Usage
 
 ```yaml
