@@ -5,7 +5,7 @@ const discord = require('discord.js');
 const webhook_id = core.getInput('webhook_id');
 const webhook_token = core.getInput('webhook_token');
 const supress_embeds = core.getInput('supress_embeds');
-const allow_mentions = core.getInput('allow_mentions');
+const supress_notification = core.getInput('supress_notification');
 const avatar_url = core.getInput('avatar_url');
 const username = core.getInput('username');
 const message = core.getInput('message');
@@ -40,15 +40,18 @@ if (embeds) {
     }
 }
 
+let flag = 0;
+if (supress_embeds === "true") flag += 4;
+if (supress_notification === "true") flag += 4096;
+
 const client = new discord.WebhookClient({ id: webhook_id, token: webhook_token });
 
 client.send({
     content: message ? message : undefined,
     embeds: embeds ? [embeds] : undefined,
-    allowedMentions: allow_mentions === "false" ? undefined : { parse: ["users", "roles", "everyone"] },
     username: username ? username : undefined,
     avatarURL: avatar_url ? avatar_url : undefined,
-    flags: supress_embeds === true ? 4 : undefined,
+    flags: flag ? flag : undefined,
 }).then(() => {
     core.setOutput("status", "success");
     core.info("Message sent successfully");

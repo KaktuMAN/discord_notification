@@ -14,7 +14,7 @@ inputs:
     description: 'The avatar URL to send the message as'
   suppress_embeds:
     description: 'Whether or not the embeds (from the urls) should be suppressed'
-  allowed_mentions:
+  supress_notification:
     description: 'Notifies users in the message'
   webhook_id:
     description: 'The ID of the webhook'
