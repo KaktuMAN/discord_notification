@@ -5,7 +5,7 @@ const discord = require('discord.js');
 const webhook_id = core.getInput('webhook_id');
 const webhook_token = core.getInput('webhook_token');
 const supress_embeds = core.getInput('supress_embeds');
-const supress_notification = core.getInput('supress_notification');
+const push_notification = core.getInput('push_notification');
 const avatar_url = core.getInput('avatar_url');
 const username = core.getInput('username');
 const message = core.getInput('message');
@@ -42,7 +42,7 @@ if (embeds) {
 
 let flag = 0;
 if (supress_embeds === "true") flag += 4;
-if (supress_notification === "true") flag += 4096;
+if (push_notification === "true") flag += 4096;
 
 const client = new discord.WebhookClient({ id: webhook_id, token: webhook_token });
 
